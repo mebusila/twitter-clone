@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+        <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js" type="text/javascript"></script>
+        <script type="text/javascript" src="jquery.textareaCounter.plugin.js"></script>
+        <script type="text/javascript" src="config.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    </head>
+    <body>
+        <div id="page-content" class="ui-widget-content">
+            <header class="ui-widget-header">
+                <div class="wrapper">
+                    <ul id="login-register-menu">
+                        <li><a href="#home" id="home" title="Home">&nbsp;</a></li>
+                        <li><a href="#login" id="login-user">Login</a></li>
+                        <li><a href="#register" id="register-user">Register</a></li>
+                    </ul>
+                    <ul id="my-menu">
+                    </ul>
+                </div>
+            </header>
+
+            <div id="register-form-dialog" title="Register a new account">
+                <ul class="registerFormErrors ui-state-error-text">
+                </ul>
+                <form id="register-form">
+                    <fieldset>
+                        <label for="register_form_name">Name</label>
+                        <input type="text" name="name" id="register_form_name" class="text ui-widget-content ui-corner-all" />
+                        <label for="register_form_email">Email</label>
+                        <input type="email" name="email" id="register_form_email" value="" class="text ui-widget-content ui-corner-all" />
+                        <label for="register_form_password">Password</label>
+                        <input type="password" name="password" id="register_form_password" value="" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+                </form>
+            </div>
+
+            <div id="login-form-dialog" title="Login to your acceount">
+                <ul class="loginFormErrors ui-state-error-text">
+                </ul>
+                <form id="login-form">
+                    <fieldset>
+                        <label for="login_form_email">Email</label>
+                        <input type="email" name="email" id="login_form_email" value="" class="text ui-widget-content ui-corner-all" />
+                        <label for="login_form_password">Password</label>
+                        <input type="password" name="password" id="login_form_password" value="" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+                </form>
+            </div>
+
+            <div id="compose-post-form-dialog" title="What do you have to say?">
+                <form id="compose-new-post-form">
+                    <fieldset>
+                        <textarea id="compose_message" name="message" rows="5" class="text ui-widget-content ui-corner-all"></textarea>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="page-wrapper">
+                <div id="user-profile" class="ui-widget ui-widget-content ui-corner-all">
+                </div>
+                <ul id="posts"></ul>
+                <ul id="users"></ul>
+            </div>
+            <script type="text/x-jquery-tmpl" id="my-menuTmpl">
+                <li><a href="#home" id="home" title="Home">&nbsp;</a></li>
+                <li class="image">
+                    <a class="username-pic load-posts" href="#!/${slug}" data-slug="${slug}">
+                        <img src="http://www.gravatar.com/avatar/${email_hash}?s=24" />
+                    </a>
+                </li>
+                <li><a href="#compose-new-post" id="compose-new-post" title="compose new post"></a></li>
+                <li><a href="#logout" id="logout">&nbsp;</a></li>
+            </script>
+            <script type="text/x-jquery-tmpl" id="currentUserTmpl">
+                <div class="header">
+                    <a class="username load-posts" href="#!/${slug}" data-slug="${slug}">
+                        <strong>${name}</strong>
+                    </a>
+                    {{if logged_user_id}}
+                    {{if id != logged_user_id}}
+                    {{if is_following > 0}}
+                    <a class="unfollow" id="unfollow-user" href="#" data-slug="${slug}">[unfollow]</a>
+                    {{else}}
+                    <a class="follow" id="follow-user" href="#" data-slug="${slug}">[follow]</a>
+                    {{/if}}
+                    {{/if}}
+                    {{/if}}
+                </div>
+                <a class="username-pic load-posts" href="#!/${slug}" data-slug="${slug}">
+                    <img src="http://www.gravatar.com/avatar/${email_hash}?s=75" />
+                </a>
+                <ul class="content">
+                    <li class="posts_stats">
+                        <a href="#!/${slug}/posts" class="load-posts" data-slug="${slug}">
+                            <strong>${posts_stats}</strong>
+                            posts
+                        </a>
+                    </li>
+                    <li class="following">
+                        <a href="#!/${slug}/following">
+                            <strong>${following_stats}</strong>
+                            following
+                        </a>
+                    </li>
+                    <li class="followers">
+                        <a href="#!/${slug}/followers">
+                            <strong>${followers_stats}</strong>
+                            followers
+                        </a>
+                    </li>
+                </ul>
+            </script>
+            <script type="text/x-jquery-tmpl" id="userTmpl">
+                <li class="user-content">
+                    <a class="username-pic load-posts" href="#!/${slug}" data-slug="${slug}">
+                        <img src="http://www.gravatar.com/avatar/${email_hash}?s=50" />
+                        <strong>${name}</strong>
+                        <ul class="metadata">
+                            <li class="member_since">Member since: ${created}</li>
+                            <li class="last_login">Last login: ${last_login}</li>
+                        </ul>
+                    </a>
+                    <ul class="stats">
+                        <li class="posts_stats">
+                            <a href="#!/${slug}/posts" class="load-posts" data-slug="${slug}">
+                                <strong>${posts_stats}</strong>
+                                posts
+                            </a>
+                        </li>
+                        <li class="following">
+                            <a href="#!/${slug}/following">
+                                <strong>${following_stats}</strong>
+                                following
+                            </a>
+                        </li>
+                        <li class="followers">
+                            <a href="#!/${slug}/followers">
+                                <strong>${followers_stats}</strong>
+                                followers
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </script>
+            <script type="text/x-jquery-tmpl" id="postTmpl">
+                <li class="post-content">
+                    <a class="username-pic load-posts" href="#!/${user.slug}" data-slug="${user.slug}">
+                        <img src="http://www.gravatar.com/avatar/${user.email_hash}?s=50" />
+                    </a>
+                    <div class="item-header">
+                        <a class="username load-posts" href="#!/${user.slug}" data-slug="${user.slug}">
+                            <strong>${user.name}</strong>
+                        </a>
+                        <small class="date">${created}</small>
+                    </div>
+                    <p class="post-text">${message}</p>
+                </li>
+            </script>
+        </div>
+    </body>
+</html>

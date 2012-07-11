@@ -1,0 +1,225 @@
+/*
+    Document   : style
+    Author     : Sherban Carlogea <sherban.carlogea@gmail.com>
+*/
+
+root {
+    display: block;
+}
+body {
+    font-size: 72.5%;
+    font-family: verdana;
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+header div.wrapper {
+    width: 900px;
+    margin: auto;
+}
+header ul li {
+    display: inline;
+}
+
+header ul#login-register-menu {
+    float: left;
+}
+
+header ul#my-menu {
+    float: right;
+}
+
+ul#my-menu a#home {
+    display: block;
+    background-image: url("images/home.png");
+    width: 24px;
+    height: 24px;
+}
+
+ul#login-register-menu {
+    display: inline;
+    float: left;
+}
+
+ul#login-register-menu a#home {
+    display: block;
+    background-image: url("images/home.png");
+    width: 24px;
+    height: 24px;
+}
+
+ul#login-register-menu li a {
+    margin-right: 5px;
+    float: left;
+}
+
+ul#my-menu {display: none}
+
+ul#my-menu li {
+    display: inline;
+    float: left;
+}
+
+ul#my-menu li a {
+    margin-right: 5px;
+}
+
+ul#my-menu li a#compose-new-post {
+    display: block;
+    background-image: url("images/compose.png");
+    width: 24px;
+    height: 24px;
+}
+
+ul#my-menu li a#logout {
+    display: block;
+    background-image: url("images/logout.png");
+    width: 24px;
+    height: 24px;
+}
+
+label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+textarea { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+ui-dialog .ui-state-error { padding: .3em; }
+validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+.originalDisplayInfo {
+    width: 95% !important;
+    font-size: 10px;
+    color: #000000;
+    text-align: right;
+}
+
+div.page-wrapper {
+    width: 900px;
+    margin: auto;
+}
+
+div#user-profile {
+    width: 250px;
+    float: left;
+    padding: 10px;
+}
+
+ul#posts {
+    float: left;
+    margin: auto;
+    width: 500px;
+}
+
+ul#posts li {
+    float: left;
+    display: inline;
+    width: 100%;
+}
+
+ul#posts li.post-content:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+ul#posts li.post-content {
+    clear: both;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+ul#posts li.post-content img {
+    float: left;
+    padding-right: 10px;
+}
+
+ul#posts li.post-content div.item-header small.date {
+    float: right;
+}
+
+div#user-profile {
+    display: none;
+}
+
+div#user-profile div.header {
+    clear: both;
+    padding-bottom: 10px;
+}
+
+div#user-profile div.header a.follow {
+    float: right;
+}
+
+div#user-profile div.header a.unfollow {
+    float: right;
+}
+
+div#user-profile a.username-pic {
+    float: left;
+}
+
+div#user-profile ul.content {
+    display: list;
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    float: left;
+}
+
+div#user-profile ul.content li {
+    padding: 2px;
+    margin-left: 5px;
+}
+
+ul#users {
+    float :left;
+    list-style: none;
+    width: 500px;
+    margin: auto;
+}
+
+ul#users li.user-content {
+    float :left;
+    width: 100%;
+}
+
+ul#users li.user-content a.username-pic {
+    float: left;
+}
+
+ul#users li.user-content a.username-pic img {
+    float: left;
+    margin-right: 5px;
+}
+
+ul#users li ul.metadata {
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    list-style: none;
+}
+
+ul#users li ul.metadata li {
+    font-size: 80%;
+}
+
+ul#users li ul.stats {
+    float: right;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+ul#users li.user-content:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+ul#users li.user-content {
+    clear: both;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
